@@ -6,9 +6,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+// import { Toaster } from "@/components/ui/sonner"
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { useEffect } from "react";
+import { useAuthStore } from "./store/auth-store";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -24,6 +27,10 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { getUser } = useAuthStore();
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <html lang="en">
       <head>
@@ -34,6 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        {/* <Toaster /> */}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -42,6 +50,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  // const { getUser } = useAuthStore()
+  // useEffect(() => {
+  //   getUser()
+  // }, [])
   return <Outlet />;
 }
 
