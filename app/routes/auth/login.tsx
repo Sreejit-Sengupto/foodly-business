@@ -129,7 +129,7 @@ export default function LoginPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white cursor-pointer"
                   disabled={isLoading}
                 >
                   {isLoading ? "Signing in..." : "Sign In"}
@@ -150,7 +150,7 @@ export default function LoginPage() {
               <div className="grid grid-cols-1 gap-3">
                 <Button
                   variant="outline"
-                  className="w-full bg-transparent"
+                  className="w-full bg-transparent cursor-pointer"
                   onClick={googleOAuth}
                 >
                   <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">

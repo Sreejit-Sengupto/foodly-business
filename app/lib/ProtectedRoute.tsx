@@ -26,6 +26,10 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
     return <Navigate to={"/login"} replace />;
   }
 
+  if (user.role === 'CUSTOMER') {
+    return <Navigate to={"/signup"} replace />;
+  }
+
   if (!user.isVerified) {
     return <Navigate to={"/verify-email?redirect=true"} replace />;
   }

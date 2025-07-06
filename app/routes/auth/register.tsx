@@ -262,7 +262,7 @@ export default function SignupPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white cursor-pointer"
                   disabled={isLoading || !agreedToTerms}
                 >
                   {isLoading ? "Creating account..." : "Create Account"}

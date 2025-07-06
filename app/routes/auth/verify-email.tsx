@@ -117,7 +117,7 @@ export default function VerifyEmailPage() {
                 using QuickBite.
               </p>
               <Link to="/">
-                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white cursor-pointer">
                   Continue to Dashboard
                 </Button>
               </Link>
@@ -184,7 +184,7 @@ export default function VerifyEmailPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                className="w-full bg-orange-500 hover:bg-orange-600 text-white cursor-pointer"
                 disabled={isLoading || verificationCode.join("").length !== 6}
               >
                 {isLoading ? "Verifying..." : "Verify Email"}
@@ -199,7 +199,7 @@ export default function VerifyEmailPage() {
                   variant="outline"
                   onClick={handleResend}
                   disabled={isResending}
-                  className="text-orange-500 border-orange-200 hover:bg-orange-50 bg-transparent"
+                  className="text-orange-500 border-orange-200 hover:bg-orange-50 bg-transparent cursor-pointer"
                 >
                   {isResending ? (
                     <>

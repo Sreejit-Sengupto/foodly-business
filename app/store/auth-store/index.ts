@@ -2,6 +2,7 @@ import { create } from "zustand";
 // import { toast } from "sonner"
 import axsInstance from "@/axios";
 import { type NavigateFunction } from "react-router";
+import { toast } from "sonner"
 
 interface AuthState {
   loading: boolean;
@@ -42,7 +43,7 @@ const googleOAuth = async () => {
     // navigate(response.data.url)
   } catch (error: any) {
     console.error(error);
-    // toast(error.message)
+    toast.error(error.response.data.message)
   }
 };
 
@@ -76,6 +77,7 @@ export const loginUser = async (
         email: userData.email,
         firstname: userData.firstname,
         id: userData.id,
+        role: userData.role,
         isVerified: userData.isVerified ?? false,
         lastname: userData.lastname ?? "",
         mobileNumber: userData.mobileNumber ?? "",
@@ -84,9 +86,11 @@ export const loginUser = async (
     });
 
     // window.location.href = "/"
+    toast.success(`${userData.loginCount <= 1 ? "🎉 Welcome to" : "🎉 Welcome back"}, ${userData.firstname}!`)
     navigate("/");
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
+    toast.error(error.response.data.message)
   }
 };
 
@@ -124,9 +128,11 @@ export const registerUser = async (
     });
 
     // window.location.href = "/verify-email"
+    toast.info("📧 Check your inbox for the code!")
     navigate("/verify-email");
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
+    toast.error(error.response.data.message)
   }
 };
 
@@ -158,6 +164,7 @@ export const verifyOTP = async (
     const isVerified = response.data.success;
 
     if (isVerified) {
+      toast.success("🎉 You’re verified!")
       if (userEmail && userFirstName) {
         await sendWelcomeEmail(userEmail, userFirstName);
       }
@@ -170,7 +177,7 @@ export const verifyOTP = async (
     }
   } catch (error: any) {
     console.error(error);
-    alert(error.response.data.message);
+    toast.error(error.response.data.message);
   }
 };
 
@@ -211,8 +218,10 @@ const resendOTP = async (firstname: string, email: string) => {
         firstname: userFirstName ?? "user",
       },
     });
-  } catch (error) {
+    toast.info("📧 Check your inbox for the code!")
+  } catch (error: any) {
     console.error(error);
+    toast.error(error.response.data.message)
   }
 };
 
@@ -242,6 +251,7 @@ const logoutUser = async (
     set({
       loading: false,
     });
+    toast("✨ Logged out—come back anytime!")
   }
 };
 
@@ -258,11 +268,17 @@ const getUser = async (
 
     const fetchedUser = response.data.user;
 
+    if (fetchedUser.role === 'CUSTOMER') {
+      toast.warning("You must login with business account")
+      return get().user
+    }
+
     set({
       user: {
         email: fetchedUser.email,
         firstname: fetchedUser.firstname,
         id: fetchedUser.id,
+        role: fetchedUser.role,
         lastname: fetchedUser.lastname ?? "",
         mobileNumber: fetchedUser.mobileNumber ?? "",
         profilePic: fetchedUser.profilePicture ?? "",
