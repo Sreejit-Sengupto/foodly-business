@@ -1,87 +1,185 @@
-# Welcome to React Router!
+# 🍔 Foodly Eateries - Restaurant Management Dashboard
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A modern, full-stack restaurant management application built with React Router, TypeScript, and Tailwind CSS. This application provides restaurant owners with a comprehensive dashboard to manage orders, track performance metrics, and handle customer interactions.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+![Foodly Logo](./public/foodly_logo-removebg-preview.png)
 
-## Features
+## ✨ Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+### 🏪 Restaurant Management
+- **Real-time Order Management** - Track pending, preparing, and completed orders
+- **Performance Analytics** - Monitor daily revenue, order counts, and customer satisfaction
+- **Customer Insights** - View customer details and order history
+- **Status Tracking** - Real-time order status updates with time estimates
 
-## Getting Started
+### 🔐 Authentication & Security
+- **Email/Password Authentication** - Secure login and registration
+- **Google OAuth Integration** - Quick social login option
+- **Email Verification** - OTP-based email verification system
+- **Protected Routes** - Route-level authentication protection
+- **Role-based Access** - Eatery-specific user roles
+
+### 💻 Technical Features
+- **Server-side Rendering** - Fast page loads with SSR
+- **Hot Module Replacement** - Instant development feedback
+- **TypeScript Support** - Type-safe development
+- **Responsive Design** - Mobile-first responsive UI
+- **Modern UI Components** - Built with Radix UI and Tailwind CSS
+- **State Management** - Zustand for efficient state handling
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React Router v7** - Full-stack React framework
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Accessible component primitives
+- **Lucide React** - Beautiful icon library
+- **Zustand** - Lightweight state management
+
+### Backend Integration
+- **Axios** - HTTP client for API calls
+- **REST API** - Backend communication
+- **JWT Authentication** - Secure token-based auth
+
+### Development Tools
+- **Vite** - Fast build tool and dev server
+- **ESLint & Prettier** - Code formatting and linting
+- **Docker** - Containerization support
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v20 or higher)
+- npm or yarn
+- Backend API server running on `http://localhost:3001`
 
 ### Installation
 
-Install the dependencies:
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd foodly/eateries
+```
 
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
-
+3. Start the development server:
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+4. Open your browser and navigate to `http://localhost:5173`
 
-## Building for Production
+### Environment Configuration
 
-Create a production build:
+Ensure your backend API is running on `http://localhost:3001` or update the `BACKEND_URL` in `app/lib/constants.ts`.
 
-```bash
-npm run build
+## 📱 Application Structure
+
+```
+├── app/
+│   ├── components/ui/        # Reusable UI components
+│   ├── lib/                  # Utilities and constants
+│   ├── routes/              # Application routes
+│   │   ├── auth/            # Authentication pages
+│   │   ├── home.tsx         # Main dashboard
+│   │   └── about.tsx        # About page
+│   ├── store/               # State management
+│   │   └── auth-store/      # Authentication store
+│   ├── axios/               # API configuration
+│   └── welcome/             # Welcome assets
+├── public/                  # Static assets
+├── Dockerfile              # Container configuration
+└── package.json            # Dependencies and scripts
 ```
 
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
+## 🔧 Available Scripts
 
 ```bash
-docker build -t my-app .
+# Development
+npm run dev          # Start development server
+
+# Building
+npm run build        # Create production build
+npm run start        # Start production server
+
+# Type checking
+npm run typecheck    # Run TypeScript type checking
+```
+
+## 🐳 Docker Deployment
+
+### Build and Run with Docker
+
+```bash
+# Build the Docker image
+docker build -t foodly-eateries .
 
 # Run the container
-docker run -p 3000:3000 my-app
+docker run -p 3000:3000 foodly-eateries
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+### Deployment Platforms
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+This application can be deployed to:
+- **AWS ECS** - Container orchestration
+- **Google Cloud Run** - Serverless containers
+- **Azure Container Apps** - Managed container platform
+- **Digital Ocean App Platform** - Simple app deployment
+- **Fly.io** - Global app deployment
+- **Railway** - Developer-first deployment
 
-### DIY Deployment
+## 📊 Key Features Breakdown
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+### Dashboard Analytics
+- Daily order count and revenue tracking
+- Average order value calculations
+- Customer satisfaction metrics
+- Real-time performance indicators
 
-Make sure to deploy the output of `npm run build`
+### Order Management
+- Order status tracking (Pending → Preparing → Ready)
+- Customer information display
+- Pickup time management
+- Order completion workflow
 
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
+### User Experience
+- Clean, intuitive interface
+- Responsive design for all devices
+- Fast loading with optimized assets
+- Accessible UI components
 
-## Styling
+## 🔐 Authentication Flow
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+1. **Registration** - Users create accounts with email verification
+2. **Email Verification** - OTP-based verification system
+3. **Login** - Email/password or Google OAuth
+4. **Session Management** - Secure token-based sessions
+5. **Protected Access** - Route-level authentication checks
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Built with [React Router](https://reactrouter.com/)
+- UI components from [Radix UI](https://www.radix-ui.com/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
+- Icons from [Lucide React](https://lucide.dev/)
 
 ---
 
-Built with ❤️ using React Router.
+**Built with ❤️ for restaurant owners who want to streamline their operations and delight their customers.**
