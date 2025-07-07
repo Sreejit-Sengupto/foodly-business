@@ -100,32 +100,10 @@ export default function VerifyEmailPage() {
     }
   };
 
+  const userEmail = sessionStorage.getItem("user-email");
+
   if (user?.isVerified) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-50 flex items-center justify-center p-4">
-        <div className="w-full max-w-md">
-          <Card className="border-0 shadow-xl text-center">
-            <CardContent className="pt-12 pb-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-8 h-8 text-green-500" />
-              </div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-4">
-                Email Verified!
-              </h1>
-              <p className="text-gray-600 mb-8">
-                Your email has been successfully verified. You can now start
-                using QuickBite.
-              </p>
-              <Link to="/">
-                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white cursor-pointer">
-                  Continue to Dashboard
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    );
+    return <Navigate to={"/"} replace />;
   }
 
   return (
@@ -133,11 +111,13 @@ export default function VerifyEmailPage() {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center space-x-2 mb-6">
-            <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">Q</span>
-            </div>
-            <span className="text-2xl font-bold text-gray-900">QuickBite</span>
+          <Link to="/" className="inline-flex items-center space-x-2">
+            <img
+              src="foodly_logo-removebg-preview.png"
+              width={200}
+              height={200}
+            />
+            {/* <span className="text-2xl font-bold text-gray-900">QuickBite</span> */}
           </Link>
           <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <Mail className="w-8 h-8 text-orange-500" />
@@ -147,7 +127,7 @@ export default function VerifyEmailPage() {
           </h1>
           <p className="text-gray-600">
             We've sent a 6-digit verification code to{" "}
-            <span className="font-medium text-gray-900">john@example.com</span>
+            <span className="font-medium text-gray-900">{userEmail}</span>
           </p>
         </div>
 

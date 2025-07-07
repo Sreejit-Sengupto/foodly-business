@@ -1,5 +1,4 @@
 import { create } from "zustand";
-// import { toast } from "sonner"
 import axsInstance from "@/axios";
 import { type NavigateFunction } from "react-router";
 import { toast } from "sonner";
@@ -35,9 +34,10 @@ const googleOAuth = async () => {
   try {
     const response = await axsInstance.request({
       url: "/oauth/google/url",
+      headers: {
+        role: "EATERY",
+      },
     });
-
-    console.log(response.data);
 
     window.location.href = response.data.url;
     // navigate(response.data.url)
@@ -89,7 +89,9 @@ export const loginUser = async (
     toast.success(
       `${userData.loginCount <= 1 ? "🎉 Welcome to" : "🎉 Welcome back"}, ${userData.firstname}!`,
     );
-    navigate("/");
+    navigate("/", {
+      replace: true,
+    });
   } catch (error: any) {
     console.error(error);
     toast.error(error.response.data.message);
@@ -131,7 +133,9 @@ export const registerUser = async (
 
     // window.location.href = "/verify-email"
     toast.info("📧 Check your inbox for the code!");
-    navigate("/verify-email");
+    navigate("/verify-email", {
+      replace: true,
+    });
   } catch (error: any) {
     console.error(error);
     toast.error(error.response.data.message);
@@ -151,7 +155,6 @@ export const verifyOTP = async (
 
   const userEmail = sessionStorage.getItem("user-email");
   const userFirstName = sessionStorage.getItem("firstname");
-  console.log("email", userEmail);
 
   try {
     const response = await axsInstance.request({
@@ -174,11 +177,13 @@ export const verifyOTP = async (
       if (userEmail && password) {
         await loginUser(userEmail, password, navigate, set);
       } else {
-        navigate("/login");
+        navigate("/login", {
+          replace: true,
+        });
       }
     }
   } catch (error: any) {
-    console.error(error);
+    console.error("Verify mail err:", error);
     toast.error(error.response.data.message);
   }
 };
@@ -288,9 +293,6 @@ const getUser = async (
       },
     });
 
-    const u = get().user;
-    console.log(u);
-
     set({
       loading: false,
     });
@@ -299,13 +301,9 @@ const getUser = async (
   } catch (error) {
     console.error(error);
   } finally {
-    console.log("Setting loading to false");
-
     set({
       loading: false,
     });
-
-    console.log(get().loading);
   }
 };
 

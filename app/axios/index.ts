@@ -19,19 +19,19 @@ axsInstance.interceptors.response.use(
     }
 
     if (error.response?.status === 401 && !originalRequest._retry) {
-      console.log("originalRequest before setting _retry:", originalRequest);
-      console.log(
-        "originalRequest._retry before setting:",
-        originalRequest._retry,
-      );
+      // console.log("originalRequest before setting _retry:", originalRequest);
+      // console.log(
+      //   "originalRequest._retry before setting:",
+      //   originalRequest._retry,
+      // );
 
       originalRequest._retry = true;
 
-      console.log("originalRequest after setting _retry:", originalRequest);
-      console.log(
-        "originalRequest._retry after setting:",
-        originalRequest._retry,
-      );
+      // console.log("originalRequest after setting _retry:", originalRequest);
+      // console.log(
+      //   "originalRequest._retry after setting:",
+      //   originalRequest._retry,
+      // );
 
       try {
         await axsInstance.post("/auth/refresh-token");

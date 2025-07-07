@@ -181,7 +181,7 @@ export default function BusinessDashboard() {
                             alt="Restaurant"
                           />
                           <AvatarFallback>
-                            {user?.firstname.charAt(0)}
+                            {user?.firstname.charAt(0).toUpperCase()}
                           </AvatarFallback>
                         </Avatar>
                       </Button>
